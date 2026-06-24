@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yes or No</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background: #f8f8f8;
+        overflow: hidden;
+        background-image: url("loove.jpg");
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100%;
+        text-align: center;
+        padding: 20px;
+        position: relative;
+    }
+
+    h1 {
+        font-size: clamp(1.5rem, 5vw, 2.5rem);
+        margin-bottom: 40px;
+        color: aliceblue;
+    }
+
+    .buttons {
+        position: relative;
+        width: 100%;
+        height: 200px;
+    }
+
+    button {
+        padding: 12px 25px;
+        font-size: clamp(1rem, 4vw, 1.2rem);
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        position: absolute;
+        border-radius: 12px;
+        border: 4px dashed #f44336;
+    }
+
+    #yesBtn {
+        left: 35%;
+        top: 50%;
+    }
+
+    #noBtn {
+        left: 55%;
+        top: 50%;
+    }
+
+    h2{
+        color: #f44336;
+        font-weight: 5000;
+    }
+
+    #popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 85%;
+        max-width: 320px;
+        background: white;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        text-align: center;
+    }
+
+    #popup img {
+        width: 100%;
+        max-width: 250px;
+        border-radius: 10px;
+    }
+
+    /* Extra small screens */
+    @media (max-width: 480px) {
+        #yesBtn {
+            left: 25%;
+        }
+
+        #noBtn {
+            left: 60%;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Oye Siddharth, Will you be my Boyfriend?</h1>
+
+    <div class="buttons">
+        <button id="yesBtn" onclick="sayYes()">Yes</button>
+        <button id="noBtn">No</button>
+    </div>
+</div>
+
+<div id="popup">
+    <h2>Ote Tantyu!!! ❤️</h2>
+    <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="Celebration GIF">
+</div>
+
+<script>
+    const noBtn = document.getElementById("noBtn");
+    const popup = document.getElementById("popup");
+
+    function moveButton() {
+        const maxX = window.innerWidth - noBtn.offsetWidth;
+        const maxY = window.innerHeight - noBtn.offsetHeight;
+
+        const randomX = Math.random() * maxX;
+        const randomY = Math.random() * maxY;
+
+        noBtn.style.left = `${randomX}px`;
+        noBtn.style.top = `${randomY}px`;
+    }
+
+    // Desktop hover
+    noBtn.addEventListener("mouseover", moveButton);
+
+    // Mobile touch
+    noBtn.addEventListener("touchstart", function(e) {
+        e.preventDefault();
+        moveButton();
+    });
+
+    // Click fallback
+    noBtn.addEventListener("click", moveButton);
+
+    function sayYes() {
+        popup.style.display = "block";
+    }
+</script>
+
+</body>
+</html>
